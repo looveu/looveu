@@ -1,0 +1,22 @@
+{
+    "undef":true,
+    "unused":true,
+    "curly":true,
+    "indent":4,
+    "devel":true,
+    "laxcasebreak":true,
+    "globals":{
+        "brackets": true,
+        "window": true,
+        "require": true,
+        "define": true,
+        "$": true,
+        "module": true,
+        "exports": true,
+        "setTimeout": true,
+        "global": true,
+        "document": true,
+        "requirejs": true,
+        "navigator": true
+    }
+}
