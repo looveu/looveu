@@ -1,4 +1,4 @@
-define(function (require, exports, module) {;
+define(function (require, exports, module) {
     (function () {
 
         var object = typeof exports != 'undefined' ? exports : this; // #8: web workers
@@ -58,5 +58,5 @@ define(function (require, exports, module) {;
                 return output;
             });
 
-    }());
+    })();
 });

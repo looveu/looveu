@@ -17,6 +17,7 @@
         "global": true,
         "document": true,
         "requirejs": true,
-        "navigator": true
+        "navigator": true,
+        "process": true
     }
 }
