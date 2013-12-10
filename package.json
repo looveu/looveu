@@ -1,0 +1,24 @@
+{
+  "name": "looveu",
+  "version": "0.1.0",
+  "description": "for build framework of yours",
+  "main": "/bin/build.js",
+  "scripts": {
+    "test": "/test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/looveu/looveu.git"
+  },
+  "keywords": [
+    "amd",
+    "javascript",
+    "build"
+  ],
+  "author": "looveu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/looveu/looveu/issues"
+  },
+  "homepage": "https://github.com/looveu/looveu"
+}
