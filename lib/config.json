@@ -1,0 +1,67 @@
+//所有相对文件路径均相对于JSON配置文件的位置
+{
+	//static域名配置，表示Library的根路径，
+	//如对于NS.ui.Button，对应URL为http://s.jamcode.org/js/NS/ui/Button/init.js，
+	//则staticUrls则配置为http://s.jamcode.org/js/
+	//此这路径将替换nsconf生的rootPath
+	//#REQUIRED
+	"staticUrls":{
+		"defaults":"http://s.jamcode.org/js/",//默认的static路径
+		//可以不同的Lib配置不同的根路径
+		"NS":"http://s.jamcode.org/third-party-js/"
+	},
+    //列出用到的Library的_nsconf_.js文件路径列表
+    "nsconfs":[ //#REQUIRED
+        "../src/Looveu/_nsconf_.js"
+    ],
+    //列出需要打包的Package，但不需要列出它的依赖包
+    //支持结尾的"*"，获取该命名空间下的所有Package
+    "includes":[//#REQUIRED
+        "Looveu.*",
+		"Looveu.Window"
+    ],
+	//是否将Package/init.js也打包进去，默认为true
+	"embedPackageCore":true,
+    //列出运行时环境或preload.js中已经存在，不需要获取依赖的包
+    "imported":["Looveu.ui.*"],
+    //需要在所有代码之前运行的JS文件
+    //按这里列出的顺序加载
+    "preloadScripts":[
+    ],
+    //在所有Package代码之后加载的JS文件（此时所有Package都完成了声明）
+    //按这里列出的顺序加载
+    "postloadScripts":[
+    ],
+    //在所有CSS之前按顺序加载的样式文件(支持LESS CSS)
+    "preloadStyles":[
+    ],
+    //在所有CSS文件之后按顺序加载的样式文件(Also LESS)
+    "postloadStyles":[ 
+    ],
+    //对输出的JS和CSS文件进行压缩
+    "compress":false, 
+
+    //导出模式
+    /*
+    支持模式：
+    includes    只导出includes项列出的Package的JS和CSS
+    deps        只导出includes项列出的Package依赖的Package的JS和CSS
+    all         导入includes及其依赖Package的JS和CSS
+    */
+    "exportMode":"all",
+    // js / css / css4ie6
+    "outputs":[
+        {
+            "format": "js",
+            "output": "../build/all.js"
+        },
+        {
+            "format": "css",
+            "output": "../build/all.css"
+        },
+        {
+            "format": "css4ie6",
+            "output": "../build/all.ie6.css"
+        }
+    ]
+}

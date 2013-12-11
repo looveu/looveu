@@ -1,0 +1,106 @@
+<!doctype html>
+<!--
+部署到生产环境时一定要记住删除此 _xproxy_.html文件
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>XDomain Proxy</title>
+</head>
+<body>
+
+<script type="text/javascript">
+//部署到生产环境时需要删除此_xproxy_.html文件
+_SEP=decodeURIComponent(location.hash.slice(1));
+_ROOT_RE=/^\s*\//;
+function refuse() {
+    throw 'Access Deny!';
+}
+if (!_SEP) {
+    refuse();
+}
+
+if (window.postMessage) {
+    initMsgProxy();
+} else {
+    initIframeProxy();
+}
+
+
+
+function initMsgProxy() {
+    if (window.addEventListener) {
+        window.addEventListener('message',onReceiveMsg);
+    } else {
+        window.attachEvent('onmessage',onReceiveMsg);
+    }
+}
+
+function onReceiveMsg(evt) {
+    evt = evt || window.event;
+    var data=evt.data,
+        msgs=data.split(_SEP),
+        cid=msgs[0],
+        pid=msgs[1],
+        file=msgs[2],
+        source=evt.source,
+        url;
+    xget(pid,file,function (result) {
+        var ret=[cid,pid,result,file].join(_SEP);
+        source.postMessage(ret,'*');
+    });
+
+}
+
+function isValidNS(pid) {
+    var parts=pid.split('.'),p,re=/^[a-z][a-z0-9_$]*$/i;
+    while(p=parts.pop()) {
+        if (!re.test(p)) {
+            return false;
+        }
+    }
+    return true;
+}
+function xget(pid,file,cb) {
+
+    if (file.indexOf('..')>-1 || _ROOT_RE.test(file) || !isValidNS(pid)) {
+        return refuse();
+    }
+    var parts=pid.split('.');
+    parts.shift();
+    url='./'+parts.join('/')+'/'+file;
+    xhrGet(url,cb);
+}
+
+
+function xhrGet(url,cb) {
+    var xhr=window.XMLHttpRequest?new XMLHttpRequest:new ActiveXObject('Microsoft.XMLHTTP');
+    xhr.open('GET',url);
+    xhr.onreadystatechange=function () {
+        if (xhr.readyState===4) {
+            xhr.onreadystatechange=Number;//相当于noop
+            var result=xhr.responseText;
+            xhr.abort();
+            cb(result);
+        }
+    };
+    xhr.send();
+}
+
+function initIframeProxy() {
+    var data=decodeURIComponent(location.search.slice(1));
+    data=data.split(_SEP);
+    var pid=data[0],file=data[1],redir=data[2];
+
+    xget(pid,file,function (result) {
+        window.name=[pid,result].join(_SEP);
+        location.replace(redir);
+    });
+
+}
+
+</script>
+
+</body>
+</html>

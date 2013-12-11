@@ -1,0 +1,11 @@
+.btn4ie6 {}
+button {
+	width:100px;
+	height:40px;
+    background:transparent;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='img/icon.ie6.png', sizingMethod='crop');
+
+    background:url('img/icon.ie6.png') no-repeat right top;
+
+
+}
