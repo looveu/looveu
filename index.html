@@ -168,7 +168,7 @@
       
         
           <p>默认情况下，阿里云新购的磁盘是不会自动mount到ECS上的。</p>
-<p>一般我们需要几部操作(反正我是这样操作的).</p>
+<p>网上许多教程介绍了，我减去了其中分区步骤归纳如下，有更好方案的童鞋请和我说。</p>
 <h3 id="查看当前状态">查看当前状态</h3><p>如果使用<code>fdisk -l</code>查看存在数据盘,但是<code>df -h</code>不存在的话需要格式化数据盘并且装载数据盘。</p>
 <h3 id="格式化数据盘">格式化数据盘</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkfs.ext4 /dev/xvdb</span><br></pre></td></tr></table></figure>
 <h3 id="装载数据盘">装载数据盘</h3><p>假设装载在文件夹<code>/data</code>下</p>
