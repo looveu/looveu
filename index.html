@@ -141,7 +141,7 @@
           
             
               <a class="post-title-link" href="/2015/06/13/hello-world/">
-                Hello World
+                阿里云挂载磁盘备忘
               </a>
             
           
@@ -168,15 +168,14 @@
 
       
         
-          <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+          <p>默认情况下，阿里云新购的磁盘是不会自动mount到ECS上的。</p>
+<p>一般我们需要几部操作(反正我是这样操作的).</p>
+<h3 id="查看当前状态">查看当前状态</h3><p>如果使用<code>fdisk -l</code>查看存在数据盘,但是<code>df -h</code>不存在的话需要格式化数据盘并且装载数据盘。</p>
+<h3 id="格式化数据盘">格式化数据盘</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkfs.ext4 /dev/xvdb</span><br></pre></td></tr></table></figure>
+<h2 id="装载数据盘">装载数据盘</h2><p>假设装载在文件夹<code>/data</code>下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mount /dev/xvdb /data       //装载</span><br><span class="line">$ mv /oldfile /data/              //移动已有数据</span><br><span class="line">$ ln <span class="operator">-s</span> /data/oldfile /oldfile        //软连接新旧文件</span><br></pre></td></tr></table></figure>
+<h2 id="添加开机挂载">添加开机挂载</h2><p>编辑启动<code>vim /etc/fstab</code>追加行<br><code>/dev/xvdb               /data                   ext4    defaults        0 0</code></p>
+<h2 id="检查挂载">检查挂载</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ df -h</span><br></pre></td></tr></table></figure>
 
         
       
