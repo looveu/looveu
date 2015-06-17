@@ -20,7 +20,7 @@
 
 
 
-  <meta name="keywords" content="阿里云,磁盘," />
+  <meta name="keywords" content="Hasha,nodejs,加密," />
 
 
 
@@ -43,7 +43,7 @@
 
 
 
-  <title> 阿里云挂载磁盘备忘 // looveu </title>
+  <title> Hasha:友好的加密API // looveu </title>
 </head>
 
 <body>
@@ -130,7 +130,7 @@
           
           
             
-              阿里云挂载磁盘备忘
+              Hasha:友好的加密API
             
           
         </h1>
@@ -138,7 +138,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          發表於 2015-06-16
+          發表於 2015-06-17
         </span>
 
         
@@ -147,8 +147,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/06/16/aliyun-mount-new-disk/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/16/aliyun-mount-new-disk/"></span>
+            <a href="/2015/06/17/Hasha:友好的加密API/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/17/Hasha:友好的加密API/"></span>
             </a>
           </span>
           
@@ -162,15 +162,9 @@
       
 
       
-        <p>默认情况下，阿里云新购的磁盘是不会自动mount到ECS上的。</p>
-<p>网上许多教程介绍了，我减去了其中分区步骤归纳如下，有更好方案的童鞋请和我说。</p>
-<h3 id="查看当前状态">查看当前状态</h3><p>如果使用<code>fdisk -l</code>查看存在数据盘,但是<code>df -h</code>不存在的话需要格式化数据盘并且装载数据盘。</p>
-<h3 id="格式化数据盘">格式化数据盘</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkfs.ext4 /dev/xvdb</span><br></pre></td></tr></table></figure>
-<h3 id="装载数据盘">装载数据盘</h3><p>假设装载在文件夹<code>/data</code>下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mount /dev/xvdb /data       //装载</span><br><span class="line">$ mv /oldfile /data/              //移动已有数据</span><br><span class="line">$ ln <span class="operator">-s</span> /data/oldfile /oldfile        //软连接新旧文件</span><br></pre></td></tr></table></figure>
-<h3 id="添加开机挂载">添加开机挂载</h3><p>编辑启动 <code>vim /etc/fstab</code> 追加行<br><code>/dev/xvdb               /data                   ext4    defaults        0 0</code> </p>
-<h3 id="检查挂载">检查挂载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ df -h</span><br></pre></td></tr></table></figure>
-
+        <p>不知道你是不是nodejs加密模块的粉丝，就像其他模块一样crypto足够底层但是抽象不足。每当我们要快速<br>使用MD5和SHA加密一些东西时又会感到要做太多的工作。而且对初学者而言很难解释。</p>
+<p><a href="https://github.com/sindresorhus" title="Sindre Sorhus" target="_blank" rel="external">Sindre Sorhus</a> 写了个模块叫做<br>hasha(GitHub: <a href="https://github.com/sindresorhus/hasha" title="sindresorhus/hasha" target="_blank" rel="external">sindresorhus/hasha</a>, License: MIT, npm: hasha) 看代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// string</span></span><br><span class="line"><span class="keyword">var</span> hasha = <span class="built_in">require</span>(<span class="string">'hasha'</span>);</span><br><span class="line"></span><br><span class="line">hasha(<span class="string">'unicorn'</span>);</span><br><span class="line"><span class="comment">//=&gt; 'e233b19aabc7d5e53826fb734d1222f1f0444c3a3fc67ff4af370a66e7cadd2cb24009f1bc86f0bed12ca5fcb226145ad10fc5f650f6ef0959f8aadc5a594b27'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// hash the proccess input and output the hash sum</span></span><br><span class="line">process.stdin.pipe(hasha.stream()).pipe(process.stdout);</span><br><span class="line"></span><br><span class="line"><span class="comment">// get the MD5 hash of an image</span></span><br><span class="line">hasha.fromFile(<span class="string">'unicorn.png'</span>, &#123;algorithm: <span class="string">'md5'</span>&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, hash</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(hash);</span><br><span class="line">    <span class="comment">//=&gt; '1abcb33beeb811dca15f0ac3e47b88d9'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -178,11 +172,23 @@
       
         <div class="post-tags">
           
-            <a href="/tags/阿里云-磁盘/"> #阿里云,磁盘 </a>
+            <a href="/tags/Hasha-nodejs-加密/"> #Hasha,nodejs,加密 </a>
           
         </div>
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/16/阿里云挂载磁盘备忘/">阿里云挂载磁盘备忘</a>
+            
+          </div>
+        </div>
       
 
       
@@ -197,8 +203,8 @@
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/06/16/aliyun-mount-new-disk/"
-               data-title="阿里云挂载磁盘备忘" data-url="http://yoursite.com/2015/06/16/aliyun-mount-new-disk/">
+          <div class="ds-thread" data-thread-key="2015/06/17/Hasha:友好的加密API/"
+               data-title="Hasha:友好的加密API" data-url="http://yoursite.com/2015/06/17/Hasha:友好的加密API/">
           </div>
         
       </div>
@@ -245,7 +251,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -259,7 +265,7 @@
 
           <div class="site-state-item site-state-tags">
             
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">標籤</span>
               
           </div>
@@ -283,7 +289,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看当前状态"><span class="nav-number">1.</span> <span class="nav-text">查看当前状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格式化数据盘"><span class="nav-number">2.</span> <span class="nav-text">格式化数据盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#装载数据盘"><span class="nav-number">3.</span> <span class="nav-text">装载数据盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加开机挂载"><span class="nav-number">4.</span> <span class="nav-text">添加开机挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查挂载"><span class="nav-number">5.</span> <span class="nav-text">检查挂载</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目錄</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
