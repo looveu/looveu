@@ -20,7 +20,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,next" />
+  <meta name="keywords" content="mongodb," />
 
 
 
@@ -43,7 +43,7 @@
 
 
 
-  <title> looveu </title>
+  <title> 尝鲜mongodb3.0.4 // looveu </title>
 </head>
 
 <body>
@@ -57,9 +57,7 @@
   </div>
 <![endif]-->
 
-  <div class="container one-column 
-   page-home 
-">
+  <div class="container one-column page-post-detail">
     <!-- <div class="headband"></div> -->
 
     <div id="header" class="header">
@@ -119,9 +117,9 @@
       <div class="main-inner">
         <div id="content" class="content">
           
+
   <div id="posts" class="posts-expand">
     
-      
 
   <div class="post post-type-normal ">
     <div class="post-header">
@@ -132,9 +130,7 @@
           
           
             
-              <a class="post-title-link" href="/2015/06/20/尝鲜mongodb3-0-4/">
-                尝鲜mongodb3.0.4
-              </a>
+              尝鲜mongodb3.0.4
             
           
         </h1>
@@ -166,172 +162,56 @@
       
 
       
-        
-          <h1 id="修改最大进程数">修改最大进程数</h1><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/security/limits.<span class="keyword">d</span>/90-nproc.<span class="keyword">conf</span></span><br><span class="line"><span class="comment">*           soft   nproc        unlimited</span></span><br><span class="line">vim /etc/security/limits.<span class="keyword">conf</span></span><br><span class="line"><span class="comment">*           soft   nproc        unlimited</span></span><br></pre></td></tr></table></figure>
+        <h1 id="修改最大进程数">修改最大进程数</h1><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/security/limits.<span class="keyword">d</span>/90-nproc.<span class="keyword">conf</span></span><br><span class="line"><span class="comment">*           soft   nproc        unlimited</span></span><br><span class="line">vim /etc/security/limits.<span class="keyword">conf</span></span><br><span class="line"><span class="comment">*           soft   nproc        unlimited</span></span><br></pre></td></tr></table></figure>
 <h1 id="??">??</h1><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo never &gt; <span class="regexp">/sys/kernel</span><span class="regexp">/mm/transparent</span>_hugepage/enabled</span><br><span class="line">echo never &gt; <span class="regexp">/sys/kernel</span><span class="regexp">/mm/transparent</span>_hugepage/defrag</span><br><span class="line">ulimit -u <span class="number">32768</span></span><br></pre></td></tr></table></figure>
 <p>为了使重启以后生效将以上3条追加到/etc/rc.local中</p>
 
-        
       
     </div>
 
     <div class="post-footer">
       
-
+        <div class="post-tags">
+          
+            <a href="/tags/mongodb/"> #mongodb </a>
+          
+        </div>
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/06/17/Hasha:友好的加密API/">Hasha:友好的加密API</a>
+            
+          </div>
+        </div>
       
-        <div class="post-eof"></div>
+
+      
       
     </div>
   </div>
 
 
+
     
-      
 
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/17/Hasha:友好的加密API/">
-                Hasha:友好的加密API
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2015-06-17
-        </span>
-
+    
+      <div class="comments" id="comments">
         
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/17/Hasha:友好的加密API/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/17/Hasha:友好的加密API/"></span>
-            </a>
-          </span>
-          
+          <div class="ds-thread" data-thread-key="2015/06/20/尝鲜mongodb3-0-4/"
+               data-title="尝鲜mongodb3.0.4" data-url="http://yoursite.com/2015/06/20/尝鲜mongodb3-0-4/">
+          </div>
         
       </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>不知道你是不是nodejs加密模块的粉丝，就像其他模块一样crypto足够底层但是抽象不足。每当我们要快速<br>使用MD5和SHA加密一些东西时又会感到要做太多的工作。而且对初学者而言很难解释。</p>
-<p><a href="https://github.com/sindresorhus" title="Sindre Sorhus" target="_blank" rel="external">Sindre Sorhus</a> 写了个模块叫做<br>hasha(GitHub: <a href="https://github.com/sindresorhus/hasha" title="sindresorhus/hasha" target="_blank" rel="external">sindresorhus/hasha</a>, License: MIT, npm: hasha) 看代码。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// string</span></span><br><span class="line"><span class="keyword">var</span> hasha = <span class="built_in">require</span>(<span class="string">'hasha'</span>);</span><br><span class="line"></span><br><span class="line">hasha(<span class="string">'unicorn'</span>);</span><br><span class="line"><span class="comment">//=&gt; 'e233b19aabc7d5e53826fb734d1222f1f0444c3a3fc67ff4af370a66e7cadd2cb24009f1bc86f0bed12ca5fcb226145ad10fc5f650f6ef0959f8aadc5a594b27'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// hash the proccess input and output the hash sum</span></span><br><span class="line">process.stdin.pipe(hasha.stream()).pipe(process.stdout);</span><br><span class="line"></span><br><span class="line"><span class="comment">// get the MD5 hash of an image</span></span><br><span class="line">hasha.fromFile(<span class="string">'unicorn.png'</span>, &#123;algorithm: <span class="string">'md5'</span>&#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, hash</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(hash);</span><br><span class="line">    <span class="comment">//=&gt; '1abcb33beeb811dca15f0ac3e47b88d9'</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
-    
-      
-
-  <div class="post post-type-normal ">
-    <div class="post-header">
-
-      
-      
-        <h1 class="post-title">
-          
-          
-            
-              <a class="post-title-link" href="/2015/06/16/阿里云挂载磁盘备忘/">
-                阿里云挂载磁盘备忘
-              </a>
-            
-          
-        </h1>
-      
-
-      <div class="post-meta">
-        <span class="post-time">
-          發表於 2015-06-16
-        </span>
-
-        
-
-        
-          
-            <span class="post-comments-count">
-            &nbsp; | &nbsp;
-            <a href="/2015/06/16/阿里云挂载磁盘备忘/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/16/阿里云挂载磁盘备忘/"></span>
-            </a>
-          </span>
-          
-        
-      </div>
-    </div>
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <p>默认情况下，阿里云新购的磁盘是不会自动mount到ECS上的。</p>
-<p>网上许多教程介绍了，我减去了其中分区步骤归纳如下，有更好方案的童鞋请和我说。</p>
-<h3 id="查看当前状态">查看当前状态</h3><p>如果使用<code>fdisk -l</code>查看存在数据盘,但是<code>df -h</code>不存在的话需要格式化数据盘并且装载数据盘。</p>
-<h3 id="格式化数据盘">格式化数据盘</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ mkfs.ext4 /dev/xvdb</span><br></pre></td></tr></table></figure>
-<h3 id="装载数据盘">装载数据盘</h3><p>假设装载在文件夹<code>/data</code>下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mount /dev/xvdb /data       //装载</span><br><span class="line">$ mv /oldfile /data/              //移动已有数据</span><br><span class="line">$ ln <span class="operator">-s</span> /data/oldfile /oldfile        //软连接新旧文件</span><br></pre></td></tr></table></figure>
-<h3 id="添加开机挂载">添加开机挂载</h3><p>编辑启动 <code>vim /etc/fstab</code> 追加行<br><code>/dev/xvdb               /data                   ext4    defaults        0 0</code> </p>
-<h3 id="检查挂载">检查挂载</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ df -h</span><br></pre></td></tr></table></figure>
-
-        
-      
-    </div>
-
-    <div class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </div>
-  </div>
-
-
     
   </div>
 
-  
 
         </div>
 
@@ -352,6 +232,15 @@
   <div id="sidebar" class="sidebar">
     <div class="sidebar-inner">
 
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            本站概覽
+          </li>
+        </ul>
       
 
       <div class="site-overview">
@@ -395,6 +284,17 @@
 
       </div>
 
+      
+        <div class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#修改最大进程数"><span class="nav-number">1.</span> <span class="nav-text">修改最大进程数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#??"><span class="nav-number">2.</span> <span class="nav-text">??</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </div>
       
 
     </div>
@@ -464,6 +364,145 @@
   <!--<script src="http://looveu.u.qiniudn.com/blog/js/instantclick.js?v0002287ok" data-no-instant></script>
   <script data-no-instant>InstantClick.init();</script>-->
   
+  
+<script type="text/javascript" src="http://looveu.u.qiniudn.com/blog/js/bootstrap.scrollspy.js?v=0.4.3" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var $sidebarInner = $('.sidebar-inner');
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.didShow', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+          var self = this;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      $(indicator).velocity('stop').velocity({
+        opacity: action === 'show' ? 0.4 : 0
+      }, { duration: 100 });
+    }
+
+  });
+</script>
+
+
+  <script type="text/javascript" id="sidebar.nav">
+    $(document).ready(function () {
+      var html = $('html');
+
+      $('.sidebar-nav li').on('click', function () {
+        var item = $(this);
+        var activeTabClassName = 'sidebar-nav-active';
+        var activePanelClassName = 'sidebar-panel-active';
+        if (item.hasClass(activeTabClassName)) {
+          return;
+        }
+
+        var currentTarget = $('.' + activePanelClassName);
+        var target = $('.' + item.data('target'));
+
+        currentTarget.velocity('transition.slideUpOut', 200, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', 200)
+            .addClass(activePanelClassName);
+        });
+
+        item.siblings().removeClass(activeTabClassName);
+        item.addClass(activeTabClassName);
+      });
+
+      $('.post-toc a').on('click', function (e) {
+        e.preventDefault();
+        var offset = $(escapeSelector(this.getAttribute('href'))).offset().top;
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        });
+      });
+
+      // Expand sidebar on post detail page by default, when post has a toc.
+      var $tocContent = $('.post-toc-content');
+      if (isDesktop() && CONFIG.sidebar === 'post') {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          displaySidebar();
+        }
+      }
+    });
+  </script>
+
+
+
 
   <script type="text/javascript" data-no-instant>
     $(document).ready(function () {
