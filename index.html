@@ -132,6 +132,111 @@
           
           
             
+              <a class="post-title-link" href="/2015/06/26/在国内-大陆-开发nodejs以及前端可能需要知道的一些东西-md/">
+                在国内(大陆)开发nodejs以及前端可能需要知道的一些东西.md
+              </a>
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          發表於 2015-06-26
+        </span>
+
+        
+
+        
+          
+            <span class="post-comments-count">
+            &nbsp; | &nbsp;
+            <a href="/2015/06/26/在国内-大陆-开发nodejs以及前端可能需要知道的一些东西-md/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/26/在国内-大陆-开发nodejs以及前端可能需要知道的一些东西-md/"></span>
+            </a>
+          </span>
+          
+        
+      </div>
+    </div>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <h3 id="@#$SDFG$DEW#E@!EXWT#ß¥®™∞¡¥">@#$SDFG$DEW#E@!EXWT#ß¥®™∞¡¥</h3><ul>
+<li>github无法访问下不了</li>
+<li>node.js环境搭建好慢</li>
+<li>npm慢死</li>
+<li>bower慢</li>
+<li>BLABLABLA……</li>
+</ul>
+<h3 id="镜像大法">镜像大法</h3><h4 id="node-js环境快速搭建管理">node.js环境快速搭建管理</h4><p>直接从 github clone nvm 到本地, 这里假设大家都使用 ~/git 目录存放 git 项目:<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">cd</span> ~/git</span><br><span class="line">$ git clone http<span class="variable">s:</span>//github.<span class="keyword">com</span>/creationix/nvm.git</span><br></pre></td></tr></table></figure></p>
+<p>配置终端启动时自动执行 <code>source ~/git/nvm/nvm.sh</code>,<br>在 ~/.bashrc, ~/.bash_profile, ~/.profile, 或者 ~/.zshrc 文件添加以下命令:<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>source ~<span class="regexp">/git/nvm</span><span class="regexp">/nvm.sh</span></span><br></pre></td></tr></table></figure></p>
+<p>nvm 默认是从 <a href="http://nodejs.org/dist/" target="_blank" rel="external">http://nodejs.org/dist/</a> 下载的, 国外服务器, 必然很慢,<br>好在 nvm 以及支持从镜像服务器下载包, 于是我们可以方便地从七牛的 node dist 镜像下载:<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span><span class="constant">NVM_NODEJS_ORG_MIRROR=</span><span class="symbol">https:</span>/<span class="regexp">/npm.taobao.org/dist</span> nvm install <span class="number">0</span>.<span class="number">11.11</span></span><br></pre></td></tr></table></figure></p>
+<p>于是你就会看到一段非常快速进度条:<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span><span class="comment">######</span> <span class="number">100.0</span>%</span><br><span class="line">Now using node v0.11.11</span><br></pre></td></tr></table></figure></p>
+<p>如果你不想每次都输入环境变量 NVM_NODEJS_ORG_MIRROR, 那么我建议你加入到 <code>.bashrc</code> 文件中:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># nvm</span></span><br><span class="line"><span class="built_in">export</span> NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist</span><br><span class="line"><span class="built_in">source</span> ~/git/nvm/nvm.sh</span><br></pre></td></tr></table></figure></p>
+<p>nvm 的具体使用我在这里就不多说了,其他人讲的挺多了,官网也很详尽,或者直接nvm回车查看帮助</p>
+<h4 id="使用镜像或者cnpm加速npm">使用镜像或者cnpm加速npm</h4><p>同理 nvm , npm 默认是从国外的源获取和下载包信息, 不慢才奇怪.<br>可以通过简单的 <code>---registry</code> 参数, 使用国内的镜像 <a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a> :<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">npm</span> --registry=<span class="attribute">https</span>:<span class="regexp">//</span>registry.<span class="built_in">npm</span>.taobao.org install nrm</span><br></pre></td></tr></table></figure></p>
+<p>当然, 每次都要输入那么长串的 registry url 的话, 实在太麻烦, 可以使用 nrm 这个模块来切换镜像:<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ nrm <span class="keyword">ls</span></span><br><span class="line"><span class="comment">// 对比各个镜像的访问速度</span></span><br><span class="line">$ nrm <span class="keyword">test</span></span><br><span class="line"><span class="comment">// 使用淘宝的镜像</span></span><br><span class="line">$ nrm <span class="keyword">use</span> taobao</span><br></pre></td></tr></table></figure></p>
+<p>但是毕竟镜像跟官方的 npm 源还是会有一个同步时间差异, 目前 cnpm 的默认同步时间间隔是 15 分钟.<br>如果你是模块发布者, 或者你想马上同步一个模块, 那么推荐你安装 cnpm cli:<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> cnpm -g</span><br></pre></td></tr></table></figure></p>
+<p>通过 cnpm 命令行, 你可以快速同步任意模块:<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>cnpm sync koa connect mocha</span><br></pre></td></tr></table></figure></p>
+<p>呃, 我就是不想安装 cnpm cli 怎么办? 哈哈, 早就想到你会这么懒了, 于是我们还有一个 web 页面:</p>
+<p>例如我想马上同步 koa, 直接打开浏览器: <a href="https://npm.taobao.org/sync/koa" target="_blank" rel="external">https://npm.taobao.org/sync/koa</a></p>
+<p>或者你是命令行控, 通过 open 命令打开:<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">open</span> http<span class="variable">s:</span>//npm.taobao.org/<span class="keyword">sync</span>/koa</span><br></pre></td></tr></table></figure></p>
+<p>如果你安装的模块依赖了 C++ 模块, 需要编译, 肯定会通过 node-gyp 来编译,</p>
+<p>node-gyp 在第一次编译的时候, 需要依赖 node 源代码, 于是又会去 node dist 下载,</p>
+<p>于是大家又会吐槽, 怎么 npm 安装这么慢…</p>
+<p>好吧, 于是又要提到 —disturl 参数, 通过七牛的镜像来下载:</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">npm</span> --registry=<span class="attribute">https</span>:<span class="regexp">//</span>registry.<span class="built_in">npm</span>.taobao.org --disturl=<span class="attribute">https</span>:<span class="regexp">//</span><span class="built_in">npm</span>.taobao.org/dist install microtime</span><br></pre></td></tr></table></figure>
+<p>再次要提到 cnpm cli, 它已经默认将 —registry 和 —disturl 都配置好了, 用了就知道了.</p>
+<h4 id="GitHub好慢啊">GitHub好慢啊</h4><p>好了, 看到这里大家应该对 node 和 npm 已经没有速度慢的问题了.</p>
+<p>github 慢, 或者说是它的资源 host 被堵而已, 大家可以通过简单的 hosts 映射解决:</p>
+<p>185.31.16.184 github.global.ssl.fastly.net</p>
+<h4 id="国内taobao镜像列表">国内taobao镜像列表</h4><ul>
+<li>开源镜像: <a href="http://npm.taobao.org/mirrors" target="_blank" rel="external">http://npm.taobao.org/mirrors</a></li>
+<li>iojs.org/dist 镜像: <a href="http://npm.taobao.org/mirrors/iojs" target="_blank" rel="external">http://npm.taobao.org/mirrors/iojs</a></li>
+<li>nodejs.org/dist 镜像: <a href="http://npm.taobao.org/mirrors/node" target="_blank" rel="external">http://npm.taobao.org/mirrors/node</a></li>
+<li>phantomjs 镜像: <a href="http://npm.taobao.org/mirrors/phantomjs" target="_blank" rel="external">http://npm.taobao.org/mirrors/phantomjs</a></li>
+<li>ChromeDriver 镜像: <a href="http://npm.taobao.org/mirrors/chromedriver" target="_blank" rel="external">http://npm.taobao.org/mirrors/chromedriver</a></li>
+<li>Node.js 文档镜像: <a href="http://npm.taobao.org/mirrors/node/latest/docs/api/index.html" target="_blank" rel="external">http://npm.taobao.org/mirrors/node/latest/docs/api/index.html</a></li>
+<li>io.js 文档镜像: <a href="http://npm.taobao.org/mirrors/iojs/latest/doc/api/index.html" target="_blank" rel="external">http://npm.taobao.org/mirrors/iojs/latest/doc/api/index.html</a></li>
+</ul>
+<h4 id="bower添加代理">bower添加代理</h4><p>修改 .bowerrc 文件(如无则新增):<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "<span class="attribute">proxy</span>": <span class="value"><span class="string">"http://hx.gy:1080"</span></span>,</span><br><span class="line">  "<span class="attribute">https-proxy</span>": <span class="value"><span class="string">"http://hx.gy:1080"</span></span><br><span class="line"></span>&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="代理">代理</h4><p>你懂的能访问就好,不懂多搜就懂</p>
+
+        
+      
+    </div>
+
+    <div class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </div>
+  </div>
+
+
+    
+      
+
+  <div class="post post-type-normal ">
+    <div class="post-header">
+
+      
+      
+        <h1 class="post-title">
+          
+          
+            
               <a class="post-title-link" href="/2015/06/20/尝鲜mongodb3-0-4/">
                 尝鲜mongodb3.0.4
               </a>
@@ -170,6 +275,7 @@
           <h1 id="修改最大进程数">修改最大进程数</h1><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/security/limits.<span class="keyword">d</span>/90-nproc.<span class="keyword">conf</span></span><br><span class="line"><span class="comment">*           soft   nproc        unlimited</span></span><br><span class="line">vim /etc/security/limits.<span class="keyword">conf</span></span><br><span class="line"><span class="comment">*           soft   nproc        unlimited</span></span><br></pre></td></tr></table></figure>
 <h1 id="??">??</h1><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo never &gt; <span class="regexp">/sys/kernel</span><span class="regexp">/mm/transparent</span>_hugepage/enabled</span><br><span class="line">echo never &gt; <span class="regexp">/sys/kernel</span><span class="regexp">/mm/transparent</span>_hugepage/defrag</span><br><span class="line">ulimit -u <span class="number">32768</span></span><br></pre></td></tr></table></figure>
 <p>为了使重启以后生效将以上3条追加到/etc/rc.local中</p>
+<p>未完待续…</p>
 
         
       
@@ -363,7 +469,7 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
@@ -377,7 +483,7 @@
 
           <div class="site-state-item site-state-tags">
             
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">標籤</span>
               
           </div>
